@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+	<meta property="og:type"               content="website" />
+	<meta property="og:title"              content="Recherche du code postal" />
+	<meta property="og:description"        content="Recherche du code postal " />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+ <style>
+        .bg {
+            background-color: darkred;
+        }
+        #p1 {
+            font-family: 'Cairo', sans-serif;
+        }
+        textarea {
+            font-family: 'Cairo', sans-serif;
+            border-radius: 0px !important;
+            font-size: 20px !important;
+            border: Solid #2929294f 1px !important ;
+            resize: none;
+        }
+    </style>
+  <title>Recherche du code postal</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script src="script.js"></script>
+</head>
+<body>
+    
+<div ng-app="MyApp">
+                        <h1 class="text-center">
+
+Trouver un code postal - La Poste Tunisienne&nbsp;&nbsp;<i class="kk kk-pencil2"></i></h1>
+                        <h4 class="text-center">cette site n'est pas officielle et n'a pas dévelloppée pat la Poste Tunisienne BY MED ALI ADWENI</h4>
+                        <p id="p1" class="text-center" style="direction: rtl">تنجم تعرف  مقر البريد حسب الترقيم البريدي</p>
+                       
+	<div id="customer-table" ng-controller="MyCtrl as vm">
+	
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-xs-6"><a ng-click="vm.sort('name')" href="#">BUREAU POSTAL
+						<span ng-show="vm.predicate == 'name'" class="pull-right">
+						<span ng-show="!vm.reverse" class="glyphicon glyphicon-chevron-up">			</span>
+							<span  ng-show="vm.reverse"  class="glyphicon glyphicon-chevron-down"></span>
+							</span>
+						</a>
+						<input type="text" class="form-control" ng-model="fName"/>
+					</th>
+					<th class="col-xs-6">
+						<a ng-click="vm.sort('age')" href="#">CODE POSTAL
+							<span ng-show="vm.predicate == 'age'"class="pull-right">
+								<span ng-show="!vm.reverse" class="glyphicon glyphicon-chevron-up"></span>
+								<span ng-show="vm.reverse"  class="glyphicon glyphicon-chevron-down"></span>
+							</span>
+						</a>
+						<input type="text" class="form-control"  ng-model="fAge"/>
+					</th>
+				</tr>
+			</thead>
+            
+			<tbody>
+                <th>Localité</th>
+                <th>Code Postal</th>
+                <th>Gouverment</th>
+                <th>Délégation</th>
+
+				<tr ng-repeat="obj in vm.data | filter:{name:fName} | filter:{age:fAge}">
+                    
+					<td>{{obj.name}}</td>
+					<td>{{obj.age}}</td>
+                    					<td>{{obj.code}}</td>
+                                        					<td>{{obj.deg}}</td>
+
+
+				</tr>
+			</tbody>
+		</table>
+		{{vm.predicate}} {{vm.reverse}}
+	</div>
+</div>
+</body>
+</html>
